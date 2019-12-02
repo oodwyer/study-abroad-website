@@ -1,0 +1,42 @@
+<h1> {{place.name}} </h1>
+
+<hr> 
+
+<h3> Places to Eat </h3>
+
+{% for f in foodRev %}
+       <p> {{f.body}} </p>
+        
+        <hr>
+{% endfor %}
+
+
+<h3> Places to Stay </h3>
+
+{% for s in stayRev %}
+       <p> {{s.body}} </p>
+        
+        <hr>
+{% endfor %}
+
+
+<h3> Places to Tour </h3>
+
+{% for t in tourRev %}
+       <p> {{t.body}} </p>
+        
+        <hr>
+{% endfor %}
+
+
+<h4>Add A New Review</h4> 
+
+<h5> Food Review </h5>
+<form method="POST" action={{place.name}}>
+    {% csrf_token %}
+    <p>Create New Food Review</p>
+    <input name="name" placeholder="Name" />
+    <input name="price" placeholder="Price" />
+    <input name="rating" placeholder="Rating" />
+    <input type="submit" value="Create"/>
+</form>

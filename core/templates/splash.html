@@ -1,0 +1,16 @@
+<h1> This is our study abroad website! </h1>
+
+{% for place in places %}
+        <a href="/place/{{place.name}}">{{place.name}}</a>
+        
+        <hr>
+{% endfor %}
+
+<h3> Add a Place </h3>
+
+<form method="POST" action="/">
+    {% csrf_token %}
+    <p>Create New Place</p>
+    <input name="name" placeholder="Name" />
+    <input type="submit" value="Create"/>
+</form>
