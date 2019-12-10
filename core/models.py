@@ -68,6 +68,7 @@ class StayReview(models.Model):
     def __str__(self):
         return self.body
 
+    #order by name alphabetically
     def __ge__(x):
         if self.rating >= x.rating:
             return True 
