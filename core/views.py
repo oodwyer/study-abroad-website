@@ -8,10 +8,12 @@ from haystack.query import SearchQuerySet
 # Create your views here.
 def search(request): 
     if request.method == "POST":
-        food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
+        food_reviews = FoodReview.objects.get(body=request.POST.get('search_text', ''))
+        #food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
         return render(request, "search.html", {'food_reviews': food_reviews})
     else: 
-        return redirect("/")
+        food_reviews = set()
+        return render(request, "search.html", {'food_reviews': food_reviews})
 
 def search_titles(request):
     food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
