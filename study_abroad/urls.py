@@ -21,10 +21,8 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', splash, name='splash'),
-    path('place/<str:name>', place, name='place'),
-    path('search/place/<str:name>', place, name='place'),
-    #path('search/', search, name='search'),
-    #path('search/', include('haystack.urls')),
+    path('place/<str:urlName>', place, name='place'),
+    path('search/place/<str:urlName>', place, name='place'),
     url(r'^search/', include('haystack.urls')),
 ]
 

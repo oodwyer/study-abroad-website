@@ -16,9 +16,19 @@ class Migration(migrations.Migration):
 
 class Place(models.Model): 
     name = models.CharField(max_length=140)
+    urlName = models.CharField(max_length=140, blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def __ge__(x): 
+        if self.name >= x.name: 
+            return True 
+        else: 
+            return False 
+    
+    def getUrlName(self):
+        return self.name.replace(" ", "")
 
 class FoodReview(models.Model): 
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)

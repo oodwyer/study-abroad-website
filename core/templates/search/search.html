@@ -41,7 +41,7 @@
               <hr> 
   
               {% for result in page.object_list %}
-                  <p> <a href= "place/{{result.object.place.name}}" > {{result.object.place.name}}</a> </p>
+                  <p> <a href= "place/{{result.object.place.urlName}}" > {{result.object.place.name}}</a> </p>
                   <strong> {{ result.object.body }} </strong>
                   <p> Created at: {{result.object.created_at}} </p>
                   <p> Price rating: {{result.object.price}} / 10</p>
