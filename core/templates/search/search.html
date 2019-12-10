@@ -32,16 +32,21 @@
                   </td>
               </tr>
           </table>
+
+          <hr> 
   
           {% if query %}
-              <h3>Results</h3>
+              <strong>Results</strong>
+
+              <hr> 
   
               {% for result in page.object_list %}
                   <p> <a href= "place/{{result.object.place.name}}" > {{result.object.place.name}}</a> </p>
-                  <p> {{ result.object.body }} </p>
+                  <strong> {{ result.object.body }} </strong>
                   <p> Created at: {{result.object.created_at}} </p>
                   <p> Price rating: {{result.object.price}} / 10</p>
                   <p> Rating: {{result.object.rating}} / 10</p>
+                  <hr> 
                       
               {% empty %}
                   <p>No results found.</p>

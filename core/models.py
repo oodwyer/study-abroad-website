@@ -16,9 +16,9 @@ class Migration(migrations.Migration):
 
 class Place(models.Model): 
     name = models.CharField(max_length=140)
-    #food = models.ManyToManyField(FoodReview, blank=True)
-    #tour = models.ManyToManyField(TourReview, blank=True)
-    #stay = models.ManyToManyField(StayReview, blank=True)
+
+    def __str__(self):
+        return self.name
 
 class FoodReview(models.Model): 
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -29,6 +29,9 @@ class FoodReview(models.Model):
     rating = models.IntegerField(default = 0)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, blank=True, null=True)
 
+    def __str__(self):
+        return self.body
+
 class TourReview(models.Model): 
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     body = models.CharField(max_length=140)
@@ -37,6 +40,9 @@ class TourReview(models.Model):
     price = models.IntegerField(default = 0)
     rating = models.IntegerField(default = 0)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.body
 
 class StayReview(models.Model): 
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)

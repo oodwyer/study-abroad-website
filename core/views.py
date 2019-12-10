@@ -6,23 +6,7 @@ from whoosh.index import create_in
 from haystack.query import SearchQuerySet
 
 # Create your views here.
-""" def search(request): 
-    if request.method == "GET":
-        #food_reviews = FoodReview.objects.get(body=request.POST.get('search_text', ''))
-        print(request.POST.get('search_text'))
-        food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text'))
-        for f in food_reviews: 
-            print("test")
-            print(f.body)
-        return render(request, "search/search.html", {'food_reviews': food_reviews})
-    else: 
-        food_reviews = set()
-        return render(request, "search/search.html", {'food_reviews': food_reviews})
 
-def search_titles(request):
-    food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
-    return render(request, "search.html", {'food_reviews': food_reviews})
- """
 
 #main page 
 def splash(request): 
