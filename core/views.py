@@ -6,19 +6,23 @@ from whoosh.index import create_in
 from haystack.query import SearchQuerySet
 
 # Create your views here.
-def search(request): 
-    if request.method == "POST":
-        food_reviews = FoodReview.objects.get(body=request.POST.get('search_text', ''))
-        #food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
-        return render(request, "search.html", {'food_reviews': food_reviews})
+""" def search(request): 
+    if request.method == "GET":
+        #food_reviews = FoodReview.objects.get(body=request.POST.get('search_text', ''))
+        print(request.POST.get('search_text'))
+        food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text'))
+        for f in food_reviews: 
+            print("test")
+            print(f.body)
+        return render(request, "search/search.html", {'food_reviews': food_reviews})
     else: 
         food_reviews = set()
-        return render(request, "search.html", {'food_reviews': food_reviews})
+        return render(request, "search/search.html", {'food_reviews': food_reviews})
 
 def search_titles(request):
     food_reviews = SearchQuerySet().autocomplete(content_auto=request.POST.get('search_text', ''))
     return render(request, "search.html", {'food_reviews': food_reviews})
-
+ """
 
 #main page 
 def splash(request): 
@@ -41,18 +45,19 @@ def place(request, name):
 
         #which type of review? check which button 
         if 'food' in request.POST:
-            f = FoodReview.objects.create(author=request.user, body=body, num_likes=0, price=price, rating=rating)
-            p.food.add(f)
+            f = FoodReview.objects.create(author=request.user, body=body, num_likes=0, price=price, rating=rating, place=p)
+            #p.food.add(f)
         elif 'stay' in request.POST: 
-            s = StayReview.objects.create(author=request.user, body=body, num_likes=0, price=price, rating=rating)
-            p.stay.add(s)
+            s = StayReview.objects.create(author=request.user, body=body, num_likes=0, price=price, rating=rating, place=p)
+            #p.stay.add(s)
         elif 'tour' in request.POST: 
-            t = TourReview.objects.create(author=request.user, body=body, num_likes=0, price=price, rating=rating)
-            p.tour.add(t)
+            t = TourReview.objects.create(author=request.user, body=body, num_likes=0, price=price, rating=rating, place=p)
+            #p.tour.add(t)
         return redirect(request.META['HTTP_REFERER'])
     else:  
         place = Place.objects.get(name=name)
-        foodRev = place.food.all()
-        stayRev = place.stay.all()
-        tourRev = place.tour.all()
+        #foodRev = place.food.all()
+        foodRev = FoodReview.objects.filter(place=place)
+        stayRev = StayReview.objects.filter(place=place)
+        tourRev = TourReview.objects.filter(place=place)
         return render(request, "place.html", {"place": place, "foodRev": foodRev, "stayRev" : stayRev, "tourRev": tourRev})

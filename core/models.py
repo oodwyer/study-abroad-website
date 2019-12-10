@@ -11,11 +11,14 @@ import os, os.path
 from whoosh import index
 
 # Create your models here.
-
-
-
 class Migration(migrations.Migration):
     atomic = False
+
+class Place(models.Model): 
+    name = models.CharField(max_length=140)
+    #food = models.ManyToManyField(FoodReview, blank=True)
+    #tour = models.ManyToManyField(TourReview, blank=True)
+    #stay = models.ManyToManyField(StayReview, blank=True)
 
 class FoodReview(models.Model): 
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -24,7 +27,7 @@ class FoodReview(models.Model):
     num_likes = models.IntegerField(default=0)
     price = models.IntegerField(default = 0)
     rating = models.IntegerField(default = 0)
-    #place = core.models.Place
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, blank=True, null=True)
 
 class TourReview(models.Model): 
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -33,6 +36,7 @@ class TourReview(models.Model):
     num_likes = models.IntegerField(default=0)
     price = models.IntegerField(default = 0)
     rating = models.IntegerField(default = 0)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, blank=True, null=True)
 
 class StayReview(models.Model): 
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -41,6 +45,8 @@ class StayReview(models.Model):
     num_likes = models.IntegerField(default=0)
     price = models.IntegerField(default = 0)
     rating = models.IntegerField(default = 0)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, blank=True, null=True)
+
 
     #magic method! 
     def __str__(self):
@@ -51,9 +57,3 @@ class StayReview(models.Model):
             return True 
         else: 
             return False 
-
-class Place(models.Model): 
-    name = models.CharField(max_length=140)
-    food = models.ManyToManyField(FoodReview, blank=True)
-    tour = models.ManyToManyField(TourReview, blank=True)
-    stay = models.ManyToManyField(StayReview, blank=True)
