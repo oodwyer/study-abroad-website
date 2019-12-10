@@ -37,11 +37,12 @@
               <h3>Results</h3>
   
               {% for result in page.object_list %}
-                  <p>
-                      <a href= "place/{{result.object.place.name}}" > {{result.object.place.name}}</a>
-                      {{ result.object.body }}
+                  <p> <a href= "place/{{result.object.place.name}}" > {{result.object.place.name}}</a> </p>
+                  <p> {{ result.object.body }} </p>
+                  <p> Created at: {{result.object.created_at}} </p>
+                  <p> Price rating: {{result.object.price}} / 10</p>
+                  <p> Rating: {{result.object.rating}} / 10</p>
                       
-                  </p>
               {% empty %}
                   <p>No results found.</p>
               {% endfor %}
