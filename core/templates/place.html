@@ -12,8 +12,9 @@
   <section class="section">
     <div class="container">
       <h1 class="title">
-        {{place.name}} 
+        {{place.name}}
       </h1>
+      <a href="/">Back To Home</a> 
 
     </div>
 
@@ -24,8 +25,12 @@
                                 <strong> Places to Eat </strong>
 
                                 {% for f in foodRev %}
-                                       <p> {{f.body}} </p>
-                                        
+                                        <p> Author: {{f.author}}</p>
+                                        <p> Created On: {{f.created_at}}</p>
+                                        <p> Name: {{f.body}} </p>
+                                       <p> Price: {{f.price}} / 10</p>
+                                       <p> Rating: {{f.rating}} / 10</p>
+                                       <p> Likes: {{f.num_likes}} </p>
                                         <hr>
                                 {% endfor %}
                 </div>
@@ -33,8 +38,12 @@
                                 <strong> Places to Stay </strong>
 
                                 {% for s in stayRev %}
-                                       <p> {{s.body}} </p>
-                                        
+                                        <p> Author: {{s.author}}</p>
+                                        <p> Created On: {{s.created_at}}</p>
+                                        <p> Name: {{s.body}} </p>
+                                       <p> Price: {{s.price}} / 10</p>
+                                       <p> Rating: {{s.rating}} / 10</p>
+                                       <p> Likes: {{s.num_likes}} </p>
                                         <hr>
                                 {% endfor %}
                 </div>
@@ -42,9 +51,14 @@
                                 <strong> Places to Tour </strong>
 
                                 {% for t in tourRev %}
-                                       <p> {{t.body}} </p>
-                                        
+                                       <p> Author: {{t.author}}</p>
+                                       <p> Created On: {{t.created_at}}</p>
+                                       <p> Name: {{t.body}} </p>
+                                       <p> Price: {{t.price}} / 10</p>
+                                       <p> Rating: {{t.rating}} / 10</p>
+                                       <p> Likes: {{t.num_likes}} </p>
                                         <hr>
+
                                 {% endfor %}
                 </div>
               </div>
@@ -59,7 +73,27 @@
     <input name="name" placeholder="Name" />
     <input name="price" placeholder="Price" />
     <input name="rating" placeholder="Rating" />
-    <input type="submit" value="Create"/>
+    <input type="submit" name="food" value="Create"/>
+</form>
+<hr>
+<h5> Stay Review </h5>
+<form method="POST" action={{place.name}}>
+    {% csrf_token %}
+    <p>Create New Food Review</p>
+    <input name="name" placeholder="Name" />
+    <input name="price" placeholder="Price" />
+    <input name="rating" placeholder="Rating" />
+    <input type="submit" name="stay" value="Create"/>
+</form>
+<hr>
+<h5> Tour Review </h5>
+<form method="POST" action={{place.name}}>
+    {% csrf_token %}
+    <p>Create New Food Review</p>
+    <input name="name" placeholder="Name" />
+    <input name="price" placeholder="Price" />
+    <input name="rating" placeholder="Rating" />
+    <input type="submit" name="tour" value="Create"/>
 </form>
 
   </section>
